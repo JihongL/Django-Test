@@ -1,2 +1,2 @@
 [config]
-command = python deploy.py
+command = deploy.cmd
