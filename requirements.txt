@@ -1,2 +1,3 @@
+azure-storage
+pyodbc
 django
-django-pyodbc-azure
