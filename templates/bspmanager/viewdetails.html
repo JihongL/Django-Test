@@ -1,0 +1,86 @@
+{% extends "bspmanager/layout.html" %}
+{% block title %}
+지원상세내역
+{% endblock %}
+
+{% block content %}
+    
+<div class="container">
+  <h2> 지원 상세 내역 </h2>
+  <!--<p> 여기에 내용 써도 됨. The .table-striped class adds zebra-stripes to a table:</p>-->
+  <table class="table table-striped" style="margin-top:20px;margin-bottom:40px">
+    <tbody>
+      <tr>
+        <th width=25%>일련번호</th>
+        <td id="service_id">{{ service.id }}</td>
+      </tr>
+      
+      <tr>
+        <th>고객사</th>
+        <td>{{ service.COMPANY_NAME }} ({{ service.LOCATION }})</td>
+      </tr>
+      
+      <tr>
+        <th>엔지니어</th>
+        <td>{{ service.EMP_NAME }}</td>
+      </tr>
+      
+      <tr>
+        <th>지원타입</th>
+        <td>{{ service.SERVICE_TYPE }}</td>
+      </tr>
+      
+      <tr>
+        <th>시작시간</th>
+        <td>{{ service.START_DATETIME }}</td>
+      </tr>
+      
+      <tr>
+        <th>종료시간</th>
+        <td>{{ service.FINISH_DATETIME }}</td>
+      </tr>
+      
+      <tr>
+        <th>지원시간</th>
+        <td>{{ service.HOUR }} 시간</td>
+      </tr>
+
+      <tr>
+        <th>초과근무</th>
+        <td>{{ service.OVER_HOUR }} 시간</td>
+      </tr>
+
+      <tr>
+        <th>지원내용</th>
+        <td>{{ service.DETAILS|linebreaksbr }}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+  
+  <div style="padding-top: 10px" align="center">
+      {% if button %}
+      <button class="btn btn-success" onclick="btn_sendmail()" style="margin:10px"> 메일발송 </button>
+      {% endif %}
+      <button class="btn btn-info" onclick="btn_back()" style="margin:10px"> 목록으로 </button>
+  </div>
+</div>
+
+<script type="text/javascript">
+function btn_back() {
+    history.back()
+}
+
+function btn_sendmail() {
+    var service_id = document.getElementById("service_id").textContent;
+    link_url = "http://127.0.0.1:8000/mail/" + service_id + "/"
+    location.href = link_url
+}
+</script>
+        
+</body>
+</html>
+
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "bspmanager/layout.html" %}
+{% block title %}
+BSP Manager
+{% endblock %}
+
+{% block content %}
+
+<div class="col col-sm-12 col-md-12 col-lg-12">
+    <div style="padding: 20px; ">
+    <form action="" method="get">
+    <div class="row">
+        <h2> 프로젝트 조회 </h2> <br>
+                시작 날짜 : <input class="form-control" name="fromDate" type="date" value="{{ fromDate }}" id="dateInput" />
+                종료 날짜 : <input class="form-control" name="toDate" type="date" value="{{ toDate }}" id="dateInput"/>
+                프로젝트명 : <input class="form-control" name="q" type="text" value="{{ q }}">
+
+    </div>
+    
+    <div class="row" style="padding-top: 10px; ">
+            <input class="form-control btn btn-info" type="submit" value="검색">
+    </div>
+
+    </form>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td><B>지원날짜</B></td>
+        <td><B>담당자명</B></td>
+        <td><B>프로젝트명</B></td>
+        <!--<td><B>내용</B></td>-->
+    </tr>
+    </thead>
+    <tbody>
+    {% for task in resourceallocation %}
+        <tr onclick = "document.location.href='/bspmanager/{{task.id}}/'">
+            <td> {{ task.StartDate|date:"Y-m-d" }} </td>
+            <td> {{ task.EmployeeName }} </td>
+            <td> {{ task.TaskName }} </td>
+        </tr>
+    {% endfor %}
+    <tbody> 
+</table>
+
+{% endblock %}

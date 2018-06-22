@@ -1,0 +1,305 @@
+﻿<html>
+<head> 
+<title>BSP Manager</title>
+
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/css/bootstrap-datetimepicker.min.css"
+          rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.2/moment-with-locales.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.0/js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-gap: 10px;
+            padding: 10px;
+        }
+
+        .grid-container2 {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-gap: 10px;
+            padding-bottom: 20px;
+        }
+
+        .grid-container > div {
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .grid-container3 {
+            display: grid;
+            grid-template-columns: 14.28% 14.28% 14.28% 14.28% 14.28% 14.28% 14.28%;
+            grid-gap: 10px;
+            padding-bottom: 20px;
+
+        }
+
+        .grid-container3 > div {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid;
+            border-radius: 10px;
+            background-color: whitesmoke;
+        }
+
+        .grid-container3 > div > div {
+            text-align: center;
+            padding: 2px;
+        }
+	
+ 	 .tableView{
+            text-align: center;
+        }
+
+	.mobileTable{
+		text-align: center;
+		}
+      
+	
+	@media only screen and (max-width:600px){
+		#mobileViewPort{
+		grid-template-columns:none;
+		}	
+		.mobileTable{
+		display:none;
+		}
+		.tableView{
+            	text-align: center;
+            	width:33%;
+            	font-size: 13px;
+        		}
+		
+	}
+    </style>
+<script type="text/javascript">
+        function myFunction() {
+            var x1 = document.getElementById("status1").getAttribute("class");
+            var y1 = document.getElementById("status2").getAttribute("class");
+
+            var x2 = document.getElementById("menu1").getAttribute("class");
+            var y2 = document.getElementById("menu2").getAttribute("class");
+
+            var formObj = document.getform;
+
+            var inputObj1 = document.createElement("input");
+
+            inputObj1.setAttribute("type", "hidden");
+            inputObj1.setAttribute("name", "status1");
+            inputObj1.setAttribute("value", x1);
+
+            var inputObj2 = document.createElement("input");
+
+            inputObj2.setAttribute("type", "hidden");
+            inputObj2.setAttribute("name", "status2");
+            inputObj2.setAttribute("value", y1);
+
+            var inputObj3 = document.createElement("input");
+
+            inputObj3.setAttribute("type", "hidden");
+            inputObj3.setAttribute("name", "status3");
+            inputObj3.setAttribute("value", x2);
+
+            var inputObj4 = document.createElement("input");
+
+            inputObj4.setAttribute("type", "hidden");
+            inputObj4.setAttribute("name", "status4");
+            inputObj4.setAttribute("value", y2);
+
+            formObj.appendChild(inputObj1);
+            formObj.appendChild(inputObj2);
+            formObj.appendChild(inputObj3);
+            formObj.appendChild(inputObj4);
+            formObj.submit();
+        }
+    </script>
+</head> 
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#react_nav_bar"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/bspmanager/">
+                    bspmanager
+                </a>
+            </div>
+ 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="react_nav_bar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/bspmanager/">조회</a></li>
+                </ul>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- 로그인 되어 있을 때-->
+                            <li><a href="/accounts/password_change/"> <span
+                                    class="glyphicon glyphicon-heart"></span> 비밀번호 변경
+                            </a></li>
+                            <li><a href="/accounts/logout/"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+                        
+                    </ul>
+        </div><!-- /.container-fluid -->
+        </div>
+    </nav>
+    <div class = "container">
+            <div class="col col-sm-12 col-md-12 col-lg-12">
+                    <div style="padding: 20px; ">
+                        <form name="getform" action="" method="get">
+                            <div class="row">
+                                시작 일시 : <input class="form-control" name="fromDate" type="date" value=""
+                                               id="dateInput"/>
+                                종료 일시 : <input class="form-control" name="toDate" type="date" value="" id="dateInput"/>
+                                
+                                담당자 : <input class="form-control" name="emp_name" type="text" value=""/>
+                                
+                                <!--#프로젝트명 : <input class="form-control" name="company" type="text" value=""/>-->
+
+                                프로젝트명 : <input class="form-control" name="q" type="text" value=""/>
+                            </div>
+            
+                            <div class="row" style="padding-top: 10px; ">
+                                <input class="form-control btn btn-info" type="submit" onclick="myFunction()" value="검색">
+                            </div>
+            
+                        </form>
+                    </div>
+                </div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" id="serviceTab">
+                    <li id="status1" class="{{ status1 }}">
+                        <a class="nav-link active" data-toggle="tab" href="#menu1">활성</a>
+                    </li>
+                    <li id="status2" class="{{ status2 }}">
+                        <a class="nav-link" data-toggle="tab" href="#menu2">종료</a>
+                    </li>
+                </ul>
+            
+             <div class="tab-content">
+                    <div id="menu1" class="{{ status3 }}"><br>
+                        <h4 style="text-align:center">총 {{ count }}건</h4> <br>
+                        <table id="table_list" class="table table-striped" style="table-layout:fixed;">
+            
+                            {% if manager == True %}
+                                <thead>
+                                <tr>
+                                    <td width="120px" class="tableView"><B>투입기간</B></td>
+                                    <td width="120px" class="tableView"><B>담당자</B></td>
+                                    <td width="200px" class="tableView"><B>프로젝트명</td>
+                                    <td id="contents" class="mobileTable"><B>내용</B></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for service in services %}
+                                    <tr onclick="document.location.href='/bspmanager/{{ service.id }}/'">
+                                        <td width="120px" class="tableView"> 
+                                            {{ service.StartDate|date:"Y-m-d" }} <br> {{ service.EndDate|date:"Y-m-d" }}
+                                        </td>
+                                        <td width="80px" class="tableView"> {{ service.EmployeeName }} </td>
+                                        <td width="200px" class="tableView"> {{ service.TaskName }} </td>
+                                        <td id="contents" class="mobileTable" maxLength="20"> {{ service.TaskDESC }} </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+            
+                                {% elif manager == False %}
+                                <thead>
+                                <tr>
+                                    <td width="120px" class="tableView"><B>지원날짜</B></td>
+                                    <td width="120px" class="tableView"><B>담당자</B></td>
+                                    <td width="200px" class="tableView"><B>프로젝트명</td>
+                                    <td id="contents" class="mobileTable"><B>내용</B></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for service in services %}
+                                <tr onclick="document.location.href='/bspmanager/{{ service.id }}/'">
+                                    <td width="120px" class="tableView"> 
+                                            {{ service.StartDate|date:"Y-m-d" }} <br> {{ service.EndDate|date:"Y-m-d" }}
+                                    </td>
+                                    <td width="80px" class="tableView"> {{ service.EmployeeName }} </td>
+                                    <td width="200px" class="tableView"> {{ service.TaskName }} </td>
+                                    <td id="contents" class="mobileTable" maxLength="20"> {{ service.TaskDESC }} </td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+            
+                            {% endif %}
+            
+                        </table>
+            
+                    </div> 
+            
+                    <div id="menu2" class="{{ status4 }}"><br>
+                        <h4 style="text-align:center">총 {{ countY }}건</h4>  <br>
+                        <table id="table_list" class="table table-striped" style="table-layout:fixed;">
+              
+                            {% if manager == True %}
+                            <thead>
+                            <tr>
+                                <td width="120px" class="tableView"><B>투입기간</B></td>
+                                <td width="120px" class="tableView"><B>담당자</B></td>
+                                <td width="200px" class="tableView"><B>프로젝트명</td>
+                                <td id="contents" class="mobileTable"><B>내용</B></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for service in servicesY %}
+                                <tr onclick="document.location.href='/bspmanager/{{ service.id }}/'">
+                                    <td width="120px" class="tableView"> 
+                                        {{ service.StartDate|date:"Y-m-d" }} <br> {{ service.EndDate|date:"Y-m-d" }}
+                                    </td>
+                                    <td width="80px" class="tableView"> {{ service.EmployeeName }} </td>
+                                    <td width="200px" class="tableView"> {{ service.TaskName }} </td>
+                                    <td id="contents" class="mobileTable" maxLength="20"> {{ service.TaskDESC }} </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+        
+                            {% elif manager == False %}
+                            <thead>
+                            <tr>
+                                <td width="120px" class="tableView"><B>지원날짜</B></td>
+                                <td width="120px" class="tableView"><B>담당자</B></td>
+                                <td width="200px" class="tableView"><B>프로젝트명</td>
+                                <td id="contents" class="mobileTable"><B>내용</B></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for service in servicesY %}
+                            <tr onclick="document.location.href='/bspmanager/{{ service.id }}/'">
+                                <td width="120px" class="tableView"> 
+                                        {{ service.StartDate|date:"Y-m-d" }} <br> {{ service.EndDate|date:"Y-m-d" }}
+                                </td>
+                                <td width="80px" class="tableView"> {{ service.EmployeeName }} </td>
+                                <td width="200px" class="tableView"> {{ service.TaskName }} </td>
+                                <td id="contents" class="mobileTable" maxLength="20"> {{ service.TaskDESC }} </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+        
+                        {% endif %}
+                        </table>
+                    </div>
+                </div>
+            </div> 
+    
+</body>
+
+</html>
