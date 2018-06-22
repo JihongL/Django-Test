@@ -70,7 +70,7 @@ class bsp_Deploy(object):
 
     def do_deployment(self):
         log('Handling python deployment.')
-        self.run_cmd('env\scripts\python -m pip install --upgrade pip')
+        self.run_cmd('env\scripts\pip install --upgrade pip')
         if not self.is_inplace_deployment:
             kudu_sync_cmd = os.environ.get('KUDU_SYNC_CMD', None)
             if kudu_sync_cmd is None:
